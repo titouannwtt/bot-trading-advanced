@@ -196,6 +196,11 @@ openPositions = len(coinPositionList)
 #si la variable est toujours à 0 c'est qu'il n'y a eu aucun changement et qu'on ne prévient pas le bot telegram de nous notifier
 changement=0
 
+
+#=======================
+#  GESTION ACHAT/VENTE
+#=======================
+
 # On vérifie si on a des cryptos actuellement achetés 
 for coin in coinPositionList:
         #On vérifie si c'est le moment de les vendre ou pas
@@ -248,6 +253,10 @@ if openPositions < maxOpenPosition:
                 print("Place",buyAmount,coin,"TP at",tpPrice, tp)
 
                 openPositions += 1
+
+#================================================================================
+#  INSTANCIATIONS DES DONNEES NECESSAIRES POUR LE FICHIER CONTENANT L'HISTORIQUE
+#================================================================================
 
 coinBalance = ftx.get_all_balance()
 coinInUsd = ftx.get_all_balance_in_usd()
@@ -568,6 +577,9 @@ else :
 	addMessageComponent(f"PROFIT TOTAL => +{bonus}% (+{gain}$)\n")
 addMessageComponent(f"SOLDE TOTAL => {usdAmount} $")
 
+#===================================================================================================================
+#    ENVOIE LE MESSAGE TELEGRAM SI LE BOT A PROCEDE A DES CHANGEMENTS OU 4 fois dans la journée dans tous les cas
+#===================================================================================================================
 
 message = message.replace('-USD','')
 message = message.replace(' , ',' ')
