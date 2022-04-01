@@ -38,12 +38,12 @@ J'ai rajouté du contenu à ce code permettant :
 3. Entrez votre clé API de la plateforme [FTX](https://ftx.com/eu/referrals#a=102285520) dans le fichier de configuration.
 4. Lancer le bot toutes les heures via la commande "python3 bot_bigwill.py" dans le crontab-e comme expliqué dans [la vidéo](https://www.youtube.com/watch?v=TbZ9BVAW_SA) de l'étape 1.
 
-## Exemple de ligne à ajouter dans crontab pour executer le bot toutes les heures
+## Exemples de ligne à ajouter dans crontab pour executer le bot toutes les heures
 
 * 0 * * * * python3 /home/ubuntu/bot-bigwill/bot_bigwill.py >> /home/ubuntu/bot-bigwill/logs-executions.log
 * 0 * * * * python3 bot_bigwill.py
 * 0 * * * * python3 /home/ubuntu/bot_bigwill.py
-* 
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
