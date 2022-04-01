@@ -15,6 +15,12 @@ Depuis le fichier de configuration, il est possible de lister toutes les crypto-
 
 Une fois le bot mis en place, vous devrez mettre un montant de départ sur la plateforme [FTX](https://ftx.com/eu/referrals#a=102285520), configurer vos API, paramétrer les notifications telegram puis laisser le bot faire son travail sur une longue période (1 mois, 1 an, 3 ans, 10 ans, ...) en espérant faire du profit.
 
+## Exemple de retours Telegram :
+![](https://i.gyazo.com/34b079ce0117ed43c123a59d56af3a2e.png)
+
+## Exemple de retours logs lors de l'execution :
+![](https://i.gyazo.com/718a524187989a679b041f9e72943c67.png)
+
 ## Code
 
 Réalisé en Python, ce code a initialement été réalisé par :
@@ -32,6 +38,12 @@ J'ai rajouté du contenu à ce code permettant :
 3. Entrez votre clé API de la plateforme [FTX](https://ftx.com/eu/referrals#a=102285520) dans le fichier de configuration.
 4. Lancer le bot toutes les heures via la commande "python3 bot_bigwill.py" dans le crontab-e comme expliqué dans [la vidéo](https://www.youtube.com/watch?v=TbZ9BVAW_SA) de l'étape 1.
 
+## Exemple de ligne à ajouter dans crontab pour executer le bot toutes les heures
+
+* 0 * * * * python3 /home/ubuntu/bot-bigwill/bot_bigwill.py >> /home/ubuntu/bot-bigwill/logs-executions.log
+* 0 * * * * python3 bot_bigwill.py
+* 0 * * * * python3 /home/ubuntu/bot_bigwill.py
+* 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
