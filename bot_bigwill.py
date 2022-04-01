@@ -1,9 +1,8 @@
 #
 #NAME : BOT BigWill
 #STRATEGIES : BigWill
-#AUTHORS : Crypto Robot, updated by TitouannWtt/Moutonneux
-#ORIGINAL CODE : https://github.com/CryptoRobotFr/cBot-Project/blob/main/live_strategy/big_will_v2_live.py
-#VERSION : 2.1
+#AUTHORS : Crypto Robot, updated by MOUTONNEUX
+#VERSION : 2.5
 #
 #=============================
 #	 IMPORTS NECESSAIRES
@@ -50,6 +49,7 @@ ftx = SpotFtx(
 # CONFIGS PAR DEFAULT 
 #=====================
 
+alwaysNotifTelegram = str(config['SOLDE']['alwaysNotifTelegram'])
 timeframe=str(config['STRATEGIE']['timeframe'])
 print("Timeframe utilisé :"+str(timeframe))
 
@@ -186,6 +186,7 @@ usdBalance = coinBalance['USD']
 del coinBalance['USD']
 del coinInUsd['USD']
 totalBalanceInUsd = usdBalance + sum(coinInUsd.values())
+
 coinPositionList = []
 for coin in coinInUsd:
     if coinInUsd[coin] > 0.05 * totalBalanceInUsd:
@@ -195,11 +196,6 @@ openPositions = len(coinPositionList)
 #cette variable nous servira à la fin pour déterminer si on a fait des actions ou pas
 #si la variable est toujours à 0 c'est qu'il n'y a eu aucun changement et qu'on ne prévient pas le bot telegram de nous notifier
 changement=0
-
-
-#=======================
-#  GESTION ACHAT/VENTE
-#=======================
 
 # On vérifie si on a des cryptos actuellement achetés 
 for coin in coinPositionList:
@@ -253,10 +249,6 @@ if openPositions < maxOpenPosition:
                 print("Place",buyAmount,coin,"TP at",tpPrice, tp)
 
                 openPositions += 1
-
-#================================================================================
-#  INSTANCIATIONS DES DONNEES NECESSAIRES POUR LE FICHIER CONTENANT L'HISTORIQUE
-#================================================================================
 
 coinBalance = ftx.get_all_balance()
 coinInUsd = ftx.get_all_balance_in_usd()
@@ -437,34 +429,49 @@ with open(str(config['FICHIER.HISTORIQUE']['soldeFile']), "r") as f:
 todaySolde=usdAmount
 with open(str(config['FICHIER.HISTORIQUE']['soldeFile']), "a") as f:
 	f.write(f"{todayJour} {todayMois} {todayAnnee} {todayHeure} {todayMinutes} {todaySolde} \n")
-	
+
 #=======================================================
-# Affiche le bilan de perf dans le message telegram
+#  Affiche le bilan de perf dans le message telegram
 #=======================================================
 addMessageComponent("\n===================\n")
 addMessageComponent("Bilan de performance :")
-if 'soldeMaxJour' in locals() :
+if 'soldeMaxJour' in locals():
 	soldeMaxJour=round(soldeMaxJour,3)
-	addMessageComponent(f" - Best solde aujourd'hui : {soldeMaxJour}$ à {heureMaxJour}h")
-if 'soldeMaxMois' in locals() and (moisMaxMois !=0):
+	if (heureMaxJour==0) and (todayHeure!=0) :
+		addMessageComponent(f" - Best solde aujourd'hui : {soldeMaxJour}$ maintenant")
+	else:
+		addMessageComponent(f" - Best solde aujourd'hui : {soldeMaxJour}$ à {heureMaxJour}h")
+if 'soldeMaxMois' in locals():
 	soldeMaxMois=round(soldeMaxMois,3)
-	addMessageComponent(f" - Best solde ce mois-ci : {soldeMaxMois}$ le {jourMaxMois}/{moisMaxMois} à {heureMaxMois}h")
-if 'soldeMaxAnnee' in locals() and (moisMaxAnnee !=0):
+	if(moisMaxMois==0):
+		addMessageComponent(f" - Best solde ce mois-ci : {soldeMaxMois}$ maintenant")
+	else:
+		addMessageComponent(f" - Best solde ce mois-ci : {soldeMaxMois}$ le {jourMaxMois}/{moisMaxMois} à {heureMaxMois}h")
+if 'soldeMaxAnnee' in locals():
 	soldeMaxAnnee=round(soldeMaxAnnee,3)
-	addMessageComponent(f" - Best solde cette année : {soldeMaxAnnee}$ le {jourMaxAnnee}/{moisMaxAnnee}/{anneeMaxAnnee} à {heureMaxAnnee}h")
+	if(moisMaxAnnee==0):
+		addMessageComponent(f" - Best solde cette année : {soldeMaxAnnee}$ maintenant")
+	else:
+		addMessageComponent(f" - Best solde cette année : {soldeMaxAnnee}$ le {jourMaxAnnee}/{moisMaxAnnee}/{anneeMaxAnnee} à {heureMaxAnnee}h")
     
 addMessageComponent(" ")
 
 if 'soldeMinJour' in locals():
 	soldeMinJour=round(soldeMinJour,3)
 	addMessageComponent(f" - Pire solde aujourd'hui : {soldeMinJour}$ à {heureMinJour}h")
-if ('soldeMinMois' in locals()) and (moisMinMois !=0):
+if 'soldeMinMois' in locals():
 	soldeMinMois=round(soldeMinMois,3)
-	addMessageComponent(f" - Pire solde ce mois-ci : {soldeMinMois}$ le {jourMinMois}/{moisMinMois} à {heureMinMois}h")
-if ('soldeMinAnnee' in locals()) and (moisMinAnnee !=0):
+	if(soldeMinMois==0):
+		addMessageComponent(f" - Pire solde ce mois-ci : {soldeMinMois}$ maintenant")
+	else:
+		addMessageComponent(f" - Pire solde ce mois-ci : {soldeMinMois}$ le {jourMinMois}/{moisMinMois} à {heureMinMois}h")
+if 'soldeMinAnnee' in locals():
 	soldeMinAnnee=round(soldeMinAnnee,3)
-	addMessageComponent(f" - Pire solde cette année : {soldeMinAnnee}$ le {jourMinAnnee}/{moisMinAnnee}/{anneeMinAnnee} à {heureMinAnnee}h")
-    
+	if(moisMinMois==0):
+		addMessageComponent(f" - Pire solde ce mois-ci : {soldeMinAnnee}$ maintenant")
+	else:
+		addMessageComponent(f" - Pire solde cette année : {soldeMinAnnee}$ le {jourMinAnnee}/{moisMinMois}/{anneeMinAnnee} à {heureMinAnnee}h")
+
 
 #=================================================================
 # Affiche le bilan d'évolution continue dans le message telegram
@@ -577,13 +584,14 @@ else :
 	addMessageComponent(f"PROFIT TOTAL => +{bonus}% (+{gain}$)\n")
 addMessageComponent(f"SOLDE TOTAL => {usdAmount} $")
 
-#===================================================================================================================
-#    ENVOIE LE MESSAGE TELEGRAM SI LE BOT A PROCEDE A DES CHANGEMENTS OU 4 fois dans la journée dans tous les cas
-#===================================================================================================================
 
 message = message.replace('-USD','')
 message = message.replace(' , ',' ')
-if (changement==0 and (int(todayHeure)!=8 and int(todayHeure)!=12 and int(todayHeure)!=18 and int(todayHeure)!=0)):
+#Si on a activé de toujours recevoir la notification telegram
+if alwaysNotifTelegram=='true':
+    telegram_send.send(messages=[f"{message}"])
+#Sinon : si aucun changement de données n'a lieu et qu'il est ni 8h, ni 12h, ni 18h, ni 0h : on envoit pas de notif
+elif changement==0 and (int(todayHeure)!=8 and int(todayHeure)!=12 and int(todayHeure)!=18 and int(todayHeure)!=0):
 	print("Aucun changement de données, aucune information n'a été envoyé à Telegram")
 else :
-	telegram_send.send(messages=[f"{message}"])
+    telegram_send.send(messages=[f"{message}"])
