@@ -37,12 +37,18 @@ J'ai rajouté du contenu à ce code permettant :
 >git clone https://github.com/titouannwtt/bot-bigwill.git
 
 Si vous rencontrez des difficultés, vous pouvez suivre [cette vidéo](https://www.youtube.com/watch?v=TbZ9BVAW_SA), le début de cette vidéo explique comment obtenir et se connecter à une machine ubuntu.
+
 2. Installer les librairies nécessaires :
 >pip install -r requirements.txt 
+
 3. Installer et configurer [telegram_send](https://github.com/rahiel/telegram-send#installation) sur votre machine pour recevoir les notifications Telegram. Si vous rencontrez des difficultés, vous pouvez suivre [cette vidéo](https://www.youtube.com/watch?v=dtLnO9AuFuk).
+
 4. Entrez votre clé API de la plateforme [FTX](https://ftx.com/eu/referrals#a=102285520) dans le fichier de configuration "config-bot.cfg".
+
 5. Indiquer l'emplacement de votre fichier historiques-soldes.dat dans le fichier de configuration "config-bot.cfg".
+
 6. Aller à la ligne 34 du bot : "bot_bigwill.py" et changer le chemin vers le fichier de configuration : config.read('/home/ubuntu/bot-bigwill/config-bot.cfg')
+
 7. Lancer le bot toutes les heures via la commande "python3 bot_bigwill.py" dans le crontab-e comme expliqué dans [la vidéo](https://www.youtube.com/watch?v=TbZ9BVAW_SA) de l'étape 1.
 
 ## Exemples de ligne à ajouter dans crontab pour executer le bot toutes les heures
