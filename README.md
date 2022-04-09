@@ -34,9 +34,10 @@ J'ai rajouté du contenu à ce code permettant :
 ### Installation
 
 1. Héberger le bot de trading (tous les fichiers présents sur ce repos) sur une machine ubuntu ou debian continuellement allumée : 
-git clone https://github.com/titouannwtt/bot-bigwill.git
+>git clone https://github.com/titouannwtt/bot-bigwill.git
 Si vous rencontrez des difficultés, vous pouvez suivre [cette vidéo](https://www.youtube.com/watch?v=TbZ9BVAW_SA), le début de cette vidéo explique comment obtenir et se connecter à une machine ubuntu.
-2. Installer les librairies nécessaires : pip install -r requirements.txt 
+2. Installer les librairies nécessaires :
+>pip install -r requirements.txt 
 3. Installer et configurer [telegram_send](https://github.com/rahiel/telegram-send#installation) sur votre machine pour recevoir les notifications Telegram. Si vous rencontrez des difficultés, vous pouvez suivre [cette vidéo](https://www.youtube.com/watch?v=dtLnO9AuFuk).
 4. Entrez votre clé API de la plateforme [FTX](https://ftx.com/eu/referrals#a=102285520) dans le fichier de configuration "config-bot.cfg".
 5. Indiquer l'emplacement de votre fichier historiques-soldes.dat dans le fichier de configuration "config-bot.cfg".
