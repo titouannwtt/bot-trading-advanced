@@ -283,13 +283,14 @@ with open(str(config['FICHIER.HISTORIQUE']['soldeFile']), "r") as f:
 		if "#" in line:
 			# on saute la ligne
 			continue
-		data = line.split()
-		jour=int(data[0])
-		mois=int(data[1])
-		annee=int(data[2])
-		heure=int(data[3])
-		minutes=int(data[4])
-		solde=float(data[5])
+		if line != "":
+			data = line.split()
+			jour=int(data[0])
+			mois=int(data[1])
+			annee=int(data[2])
+			heure=int(data[3])
+			minutes=int(data[4])
+			solde=float(data[5])
         
 		#permet de trouver le jour où vous avez eu le plus petit solde cette année
 		if(soldeMinAnnee>solde and annee==todayAnnee):
