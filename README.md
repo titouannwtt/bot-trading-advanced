@@ -14,7 +14,8 @@ Ce bot est basé sur cette stratégie BigWill et va devoir être executé une fo
 
 Il utilise l'API de la plateforme d'exchange [FTX](https://ftx.com/eu/referrals#a=102285520) pour intéragir avec le marché des cryptos-monnaies.
 Le bot va détecter et choisir : quand acheter et quand vendre telle ou telle crypto-monnaie selon la stratégie BigWill (d'autres stratégies sont proposées sur le compte de [CryptoRobots](https://github.com/CryptoRobotFr/) .
-/!\ Attention, je ne garantie en aucun cas les performances de ce bot, à utiliser à vos risques.
+
+/!\ Attention, je ne garantie en aucun cas les performances de ce bot en l'état, à utiliser à vos risques.
 
 Depuis le fichier de configuration, il est possible de lister toutes les crypto-monnaies que l'on souhaite acheter et vendre.
 
