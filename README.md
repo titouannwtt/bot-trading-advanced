@@ -2,10 +2,15 @@
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Qu'est-ce que Bot-BigWill ?
+## Qu'est-ce que "BigWill" ?
 
-BigWill est une stratégie de trading de crypto-monnaie créée par [CryptoRobots](https://github.com/CryptoRobotFr/) 
-Ce bot est basé sur cette stratégie et va devoir être executé une fois par heure.
+BigWill est une stratégie de trading de crypto-monnaie créée par [CryptoRobots](https://github.com/CryptoRobotFr/) .
+
+Une stratégie étant : sous quelles conditions le bot va acheter et/ou vendre. Si vous voulez comprendre comment fonctionne la stratégie du BigWill, vous pouvez regarder [cette vidéo technique](https://www.youtube.com/watch?v=OLnftTstVks) qui explique le fonctionnement de cette stratégie, vous n'êtes en aucun obligé de comprendre le fonctionnement de la stratégie pour mettre en place le bot, mais si le bot ne performe pas comme vous le souhaitez, il est intéressant de comprendre pourquoi.
+
+## Qu'est-ce que le Bot-BigWill ?
+
+Ce bot est basé sur cette stratégie BigWill et va devoir être executé une fois par heure.
 
 Il utilise l'API de la plateforme d'exchange [FTX](https://ftx.com/eu/referrals#a=102285520) pour intéragir avec le marché des cryptos-monnaies.
 Le bot va détecter et choisir : quand acheter et quand vendre telle ou telle crypto-monnaie selon la stratégie BigWill (d'autres stratégies sont proposées sur le compte de [CryptoRobots](https://github.com/CryptoRobotFr/) .
