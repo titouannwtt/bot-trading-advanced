@@ -8,14 +8,20 @@ BigWill est une stratégie de trading de crypto-monnaie créée par [CryptoRobot
 
 Une stratégie étant : sous quelles conditions le bot va acheter et/ou vendre. Si vous voulez comprendre comment fonctionne la stratégie du BigWill, vous pouvez regarder [cette vidéo technique](https://www.youtube.com/watch?v=OLnftTstVks) qui explique le fonctionnement de cette stratégie, vous n'êtes en aucun obligé de comprendre le fonctionnement de la stratégie pour mettre en place le bot, mais si le bot ne performe pas comme vous le souhaitez, il est intéressant de comprendre pourquoi.
 
-## Qu'est-ce que le Bot-BigWill ?
+## Qu'est-ce que le Bot-Trading-Advanced ?
 
-Ce bot est basé sur cette stratégie BigWill et va devoir être executé une fois par heure.
+Bot-Trading-Advanced simplifie toutes les notifications que fera votre bot de trading, la stratégie mise en place par défaut est la stratégie BigWill présenté précedemment mais libre à vous de mettre en place la stratégie que vous souhaitez.
+
+Ce bot va devoir être executé une fois par heure.
 
 Il utilise l'API de la plateforme d'exchange [FTX](https://ftx.com/eu/referrals#a=102285520) pour intéragir avec le marché des cryptos-monnaies.
-Le bot va détecter et choisir : quand acheter et quand vendre telle ou telle crypto-monnaie selon la stratégie BigWill (d'autres stratégies sont proposées sur le compte de [CryptoRobots](https://github.com/CryptoRobotFr/) .
+Le bot va détecter et choisir : quand acheter et quand vendre telle ou telle crypto-monnaie selon la stratégie que vous lui indiquerez (par défaut c'est la stratégie BigWill qui est en place dans le code (d'autres stratégies sont proposées sur le compte de [CryptoRobots](https://github.com/CryptoRobotFr/) .)). 
 
 /!\ Attention, je ne garantie en aucun cas les performances de ce bot en l'état, à utiliser à vos risques.
+
+Je vous recommande de mettre en place votre propre stratégie que vous aurez déterminer à l'aide de backtest.
+Vous pouvez également consulter un autre de mes projets github pour limiter la sur-optimisation d'une stratégie lors d'un backtest : [Analyseur-PBM](https://github.com/titouannwtt/Analyseur-PBM)
+
 
 Depuis le fichier de configuration, il est possible de lister toutes les crypto-monnaies que l'on souhaite acheter et vendre.
 
@@ -32,15 +38,15 @@ Une fois le bot mis en place, vous devrez mettre un montant de départ sur la pl
 Réalisé en Python, ce code a initialement été réalisé par :
 [CryptoRobots](https://github.com/CryptoRobotFr/cBot-Project/blob/main/live_strategy/big_will_v2_live.py) 
 
-J'ai rajouté du contenu à ce code permettant :
+J'ai amélioré et rajouté du contenu à ce code permettant :
 * de centraliser l'entièreté des configurations en un même fichier config.
-* de recevoir des notifications lorsque le bot décide de vendre ou d'acheter une crypto-monnaie
-* d'obtenir des statistiques détaillées sur l'évolution du solde du compte et un suivi des performances du bot sur du long terme (tout ceci est compris dans les notifications envoyées sur Telegram
+* de recevoir des notifications Telegram lorsque vous le désirez
+* d'obtenir des statistiques détaillées sur l'évolution du solde du compte et un suivi des performances du bot sur du long terme
 
 ### Installation
 
 1. Héberger le bot de trading (tous les fichiers présents sur ce repos) sur une machine ubuntu ou debian continuellement allumée : 
->git clone https://github.com/titouannwtt/bot-bigwill.git
+>git clone https://github.com/titouannwtt/bot-trading-advanced.git
 
 Si vous rencontrez des difficultés, vous pouvez suivre [cette vidéo](https://www.youtube.com/watch?v=TbZ9BVAW_SA), le début de cette vidéo explique comment obtenir et se connecter à une machine ubuntu.
 
