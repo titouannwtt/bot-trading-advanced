@@ -63,6 +63,11 @@ Si vous rencontrez des difficultés, vous pouvez suivre [cette vidéo](https://w
 * 0 * * * * python3 bot_bigwill.py
 * 0 * * * * python3 /home/ubuntu/bot_bigwill.py
 
+# Remerciement :
+Ce code vous est partagé gratuitement, vous pouvez me remercier en utilisant un de mes liens d'affiliations :
+FTX : https://ftx.com/eu/profile#a=titouannwtt
+Binance : https://www.binance.me/fr/activity/referral/offers/claim?ref=CPA_00C08H2X8E
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
