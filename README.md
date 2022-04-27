@@ -2,7 +2,7 @@
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Qu'est-ce que "BigWill" ?
+## Qu'est-ce qu'une stratégie ? Qu'est-ce que "BigWill" ?
 
 BigWill est une stratégie de trading de crypto-monnaie créée par [CryptoRobots](https://github.com/CryptoRobotFr/) .
 
@@ -10,16 +10,14 @@ Une stratégie étant : sous quelles conditions le bot va acheter et/ou vendre. 
 
 ## Qu'est-ce que le Bot-Trading-Advanced ?
 
-Bot-Trading-Advanced simplifie toutes les notifications que fera votre bot de trading, la stratégie mise en place par défaut est la stratégie BigWill présenté précedemment mais libre à vous de mettre en place la stratégie que vous souhaitez.
+Bot-Trading-Advanced est un bot de trading qui va devoir être executé une fois par heure. Contrairement aux bots d'origine, il simplifie toutes les notifications que fera votre bot de trading.
 
-Ce bot va devoir être executé une fois par heure.
-
-Il utilise l'API de la plateforme d'exchange [FTX](https://ftx.com/eu/referrals#a=102285520) pour intéragir avec le marché des cryptos-monnaies.
-Le bot va détecter et choisir : quand acheter et quand vendre telle ou telle crypto-monnaie selon la stratégie que vous lui indiquerez (par défaut c'est la stratégie BigWill qui est en place dans le code (d'autres stratégies sont proposées sur le compte de [CryptoRobots](https://github.com/CryptoRobotFr/) .)). 
+Le bot utilise l'API de la plateforme d'exchange [FTX](https://ftx.com/eu/referrals#a=102285520) pour intéragir avec le marché des cryptos-monnaies.
+Il va détecter et choisir : quand acheter et quand vendre telle ou telle crypto-monnaie selon la stratégie que vous lui indiquerez (par défaut c'est la stratégie BigWill qui est en place dans le code (d'autres stratégies sont proposées sur le compte de [CryptoRobots](https://github.com/CryptoRobotFr/) .)). 
 
 /!\ Attention, je ne garantie en aucun cas les performances de ce bot en l'état, à utiliser à vos risques.
 
-Je vous recommande de mettre en place votre propre stratégie que vous aurez déterminer à l'aide de backtest.
+Je vous recommande de mettre en place votre propre stratégie que vous aurez déterminer à l'aide de backtests.
 Vous pouvez également consulter un autre de mes projets github pour limiter la sur-optimisation d'une stratégie lors d'un backtest : [Analyseur-PBM](https://github.com/titouannwtt/Analyseur-PBM)
 
 
