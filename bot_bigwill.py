@@ -122,29 +122,40 @@ pairList = [
     'CRV/USD'
 ]
 
+nbOfCandles=210
 dfList = {}
 for pair in pairList:
-	# print(pair)
+	#On essaie de récupérer toutes les bougies sur l'API FTX
 	try :
-		df = ftx.get_last_historical(pair, timeframe, 210)
+		df = ftx.get_last_historical(pair, timeframe, nbOfCandles)
 		dfList[pair.replace('/USD','')] = df
 	except :
 		#Si on ne parvient à récupérer la paire à la première tentative (parfois l'api FTX est inaccessible) :
-		#On attend 1 seconde et on réessaye
+		#On attend X seconde(s) et on réessaye avec moins de bougies
 		time.sleep(1)
 		try :
-			df = ftx.get_last_historical(pair, timeframe, 210)
+			df = ftx.get_last_historical(pair, timeframe, nbOfCandles-int(nbOfCandles*0.25))
 			dfList[pair.replace('/USD','')] = df
-		except Exception as e :
+		except :
+			time.sleep(2)
 			try :
-				del dfList[perpSymbol]
+				df = ftx.get_last_historical(pair, timeframe, nbOfCandles-int(nbOfCandles*0.50))
+				dfList[pair.replace('/USD','')] = df
 			except :
-				pass
-			#Si ça ne fonctionne toujours pas, on abandonne cette paire
-			telegram_send.send(messages=[f"{botname} : Impossible de récupérer les 210 dernières bougies de {pair} à 2 reprises, on n'utilisera pas cette paire durant cette execution."])
-			print(f"Impossible de récupérer les 210 dernières bougies de {pair} à 2 reprises, on n'utilisera pas cette paire durant cette execution")
-			print(f"Détails de l'erreur : {e}")
-			pass
+				time.sleep(3)
+				try : 
+					df = ftx.get_last_historical(pair, timeframe, nbOfCandles-int(nbOfCandles*0.75))
+					dfList[pair.replace('/USD','')] = df
+				except :
+					#Si au bout de la 3ème fois ça n'a vraiment pas fonctionné, on abandonne
+					try :
+						del dfList[perpSymbol]
+					except :
+						pass
+					#Si ça ne fonctionne toujours pas, on abandonne cette paire
+					telegram_send.send(messages=[f"{botname} : Impossible de récupérer les {nbOfCandles} dernières bougies de {pair} à 3 reprises, donc on n'utilisera pas cette paire durant cette execution."])
+					print(f"Impossible de récupérer les 210 dernières bougies de {pair} à 2 reprises, on n'utilisera pas cette paire durant cette execution")
+					pass
 	
 
 #===========================
