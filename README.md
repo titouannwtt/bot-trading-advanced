@@ -78,7 +78,7 @@ Ou en me faisant des dons cryptos :
 
 - Adresse BTC : 3GYhBgZMfgzqjYhVhc2w53oMcvZb4jfGfL
 
-- Adresse ETH : 0x43fC6F9B8b1CfBd83b52a1FD1de510effe0A49a7
+- Adresse ETH (Réseau ERC20) : 0x43fC6F9B8b1CfBd83b52a1FD1de510effe0A49a7
 
 - Adresse SOL : 5QKaHfJWxAZ6sbU5QMb2e14yAAZ45iBH91SBgnheK26v
 
