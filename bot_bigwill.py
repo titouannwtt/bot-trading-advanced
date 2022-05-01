@@ -136,6 +136,10 @@ for pair in pairList:
 	    df = ftx.get_last_historical(pair, timeframe, 210)
 	    dfList[pair.replace('/USD','')] = df
         except Exception as e :
+            try :
+                del dfList[perpSymbol]
+            except :
+                pass
 	    #Si ça ne fonctionne toujours pas, on abandonne cette paire
             telegram_send.send(messages=[f"{botname} : Impossible de récupérer les 210 dernières bougies de {pair} à 2 reprises, on n'utilisera pas cette paire durant cette execution."])
             print(f"Impossible de récupérer les 210 dernières bougies de {pair} à 2 reprises, on n'utilisera pas cette paire durant cette execution")
