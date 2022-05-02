@@ -652,7 +652,7 @@ if gain<0 :
     addMessageComponent(f"PERTE TOTAL => {gain} $ ({bonus}%)\n")
 else :
     addMessageComponent(f"GAIN TOTAL => +{gain} $ (+{bonus}%)\n")
-    addMessageComponent(f"N'hésitez pas à me soutenir pour le travail du bot :\n • {refLinkFtx} {refLinkBinance}")
+    addMessageComponent(f"N'hésitez pas à me soutenir pour le travail du bot :\n • Adresse BTC : 3GYhBgZMfgzqjYhVhc2w53oMcvZb4jfGfL\n • Adresse ETH (Réseau ERC20) : 0x43fC6F9B8b1CfBd83b52a1FD1de510effe0A49a7\n • Adresse SOL : 5QKaHfJWxAZ6sbU5QMb2e14yAAZ45iBH91SBgnheK26v\n")
 addMessageComponent(f"SOLDE TOTAL => {usdAmount}$")
 
 message = message.replace(' , ',' ')
