@@ -362,147 +362,150 @@ try :
             if "#" in line:
                 # on saute la ligne
                 continue
-            data = line.split()
-            jour=int(data[0])
-            mois=int(data[1])
-            annee=int(data[2])
-            heure=int(data[3])
-            minutes=int(data[4])
-            solde=float(data[5])
-            
-            #permet de trouver le jour où vous avez eu le plus petit solde cette année
-            if(soldeMinAnnee>solde and annee==todayAnnee):
-                soldeMinAnnee=solde
-                jourMinAnnee=jour
-                moisMinAnnee=mois
-                anneeMinAnnee=annee
-                heureMinAnnee=heure
-                
-            #permet de trouver le jour où vous avez eu le plus petit solde ce mois-ci
-            if(soldeMinMois>solde and annee==todayAnnee and mois==todayMois):
-                soldeMinMois=solde
-                jourMinMois=jour
-                moisMinMois=mois
-                anneeMinMois=annee
-                heureMinMois=heure
+	    try :
+		    data = line.split()
+		    jour=int(data[0])
+		    mois=int(data[1])
+		    annee=int(data[2])
+		    heure=int(data[3])
+		    minutes=int(data[4])
+		    solde=float(data[5])
 
-            #permet de trouver l'heure où vous avez eu le plus petit solde aujourd'hui
-            if(soldeMinJour>solde and annee==todayAnnee and mois==todayMois and jour==todayJour):
-                soldeMinJour=solde
-                jourMinJour=jour
-                moisMinJour=mois
-                anneeMinJour=annee
-                heureMinJour=heure
+		    #permet de trouver le jour où vous avez eu le plus petit solde cette année
+		    if(soldeMinAnnee>solde and annee==todayAnnee):
+			soldeMinAnnee=solde
+			jourMinAnnee=jour
+			moisMinAnnee=mois
+			anneeMinAnnee=annee
+			heureMinAnnee=heure
 
-            #permet de trouver le jour où vous avez eu le plus gros solde cette année
-            if(soldeMaxAnnee<solde and annee==todayAnnee):
-                soldeMaxAnnee=solde
-                jourMaxAnnee=jour
-                moisMaxAnnee=mois
-                anneeMaxAnnee=annee
-                heureMaxAnnee=heure
-                
-            #permet de trouver le jour où vous avez eu le plus gros solde ce mois-ci
-            if(soldeMaxMois<solde and annee==todayAnnee and mois==todayMois):
-                soldeMaxMois=solde
-                jourMaxMois=jour
-                moisMaxMois=mois
-                anneeMaxMois=annee
-                heureMaxMois=heure
+		    #permet de trouver le jour où vous avez eu le plus petit solde ce mois-ci
+		    if(soldeMinMois>solde and annee==todayAnnee and mois==todayMois):
+			soldeMinMois=solde
+			jourMinMois=jour
+			moisMinMois=mois
+			anneeMinMois=annee
+			heureMinMois=heure
 
-            #permet de trouver l'heure où vous avez eu le plus gros solde aujourd'hui
-            if(soldeMaxJour<solde and annee==todayAnnee and mois==todayMois and jour==todayJour):
-                soldeMaxJour=solde
-                jourMaxJour=jour
-                moisMaxJour=mois
-                anneeMaxJour=annee
-                heureMaxJour=heure
+		    #permet de trouver l'heure où vous avez eu le plus petit solde aujourd'hui
+		    if(soldeMinJour>solde and annee==todayAnnee and mois==todayMois and jour==todayJour):
+			soldeMinJour=solde
+			jourMinJour=jour
+			moisMinJour=mois
+			anneeMinJour=annee
+			heureMinJour=heure
 
-            #permet de trouver le solde de 6 heures auparavant
-            if(todayHeure<=6):
-                if ((todayJour-1==jour) and (todayMois==mois) and (todayAnnee==annee)) :
-                    if((24-(6-todayHeure)==heure)):
-                        solde6heures=solde
-                elif (todayJour==1 and ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1) and (todayAnnee-1==annee) and (jour==31))) :
-                    if((24-(6-todayHeure)==heure)):
-                        solde6heures=solde
-            elif ( (todayHeure-6==heure) and (todayJour==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
-                solde6heures=solde
-                
-            #permet de trouver le solde de 12 heures auparavant
-            if(todayHeure<=12):
-                if ((todayJour-1==jour) and (todayMois==mois) and (todayAnnee==annee)) :
-                    if((24-(12-todayHeure)==heure)):
-                        solde12heures=solde
-                elif (todayJour==1 and ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1) and (todayAnnee-1==annee) and (jour==31))) :
-                    if((24-(12-todayHeure)==heure)):
-                        solde12heures=solde
-            elif ( (todayHeure-12==heure) and (todayJour==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
-                solde12heures=solde
-            #permet de trouver le solde de 1 jours auparavant
-            if(todayJour<=1):
-                if ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1 and mois==12) and (todayAnnee-1==annee)) :
-                    if (mois==1 or mois==3 or mois==5 or mois==7 or mois==8 or mois==10 or mois==12) :
-                        if((31-todayJour+1==jour)):
-                            solde1jours=solde
-                    else :
-                        if((30-todayJour+1==jour)):
-                            solde1jours=solde
-            elif ( (todayJour-1==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
-                solde1jours=solde
-            #permet de trouver le solde de 3 jours auparavant
-            if(todayJour<=3):
-                if ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1 and mois==12) and (todayAnnee-1==annee)) :
-                    if (mois==1 or mois==3 or mois==5 or mois==7 or mois==8 or mois==10 or mois==12) :
-                        if((31-todayJour+3==jour)):
-                            solde3jours=solde
-                    else :
-                        if((30-todayJour+3==jour)):
-                            solde3jours=solde
-            elif ( (todayJour-3==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
-                solde3jours=solde
-            
-            #permet de trouver le solde de 7 jours auparavant
-            if(todayJour<=7):
-                if ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1 and mois==12) and (todayAnnee-1==annee)) :
-                    if (mois==1 or mois==3 or mois==5 or mois==7 or mois==8 or mois==10 or mois==12) :
-                        if((31-todayJour+7==jour)):
-                            solde7jours=solde
-                    else :
-                        if((30--todayJour+7==jour)):
-                            solde7jours=solde
-            elif ( (todayJour-7==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
-                solde7jours=solde
-                
-            #permet de trouver le solde de 14 jours auparavant
-            if(todayJour<=14):
-                if ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1 and mois==12) and (todayAnnee-1==annee)) :
-                    if (mois==1 or mois==3 or mois==5 or mois==14 or mois==8 or mois==10 or mois==12) :
-                        if((31-todayJour+14==jour)):
-                            solde14jours=solde
-                    else :
-                        if((30-todayJour+14==jour)):
-                            solde14jours=solde
-            elif ( (todayJour-14==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
-                solde14jours=solde
-                
-            #permet de trouver le solde de 1 mois auparavant
-            if(todayMois==1 and mois==12 and annee==todayAnnee-1 and todayJour==jour) :
-                solde1mois=solde
-            elif(todayMois-1==mois and annee==todayAnnee and todayJour==jour) :
-                solde1mois=solde
-                
-            #permet de trouver le solde de 2 mois auparavant
-            if(todayMois==1 and mois==11 and annee==todayAnnee-1 and todayJour==jour) :
-                solde2mois=solde
-            if(todayMois==2 and mois==12 and annee==todayAnnee-1 and todayJour==jour) :
-                solde2mois=solde
-            elif(todayMois-2==mois and annee==todayAnnee and todayJour==jour) :
-                solde2mois=solde
-        if 'solde' in locals():
-            soldeLastExec=solde
-        else:
-            soldeLastExec=usdAmount
+		    #permet de trouver le jour où vous avez eu le plus gros solde cette année
+		    if(soldeMaxAnnee<solde and annee==todayAnnee):
+			soldeMaxAnnee=solde
+			jourMaxAnnee=jour
+			moisMaxAnnee=mois
+			anneeMaxAnnee=annee
+			heureMaxAnnee=heure
+
+		    #permet de trouver le jour où vous avez eu le plus gros solde ce mois-ci
+		    if(soldeMaxMois<solde and annee==todayAnnee and mois==todayMois):
+			soldeMaxMois=solde
+			jourMaxMois=jour
+			moisMaxMois=mois
+			anneeMaxMois=annee
+			heureMaxMois=heure
+
+		    #permet de trouver l'heure où vous avez eu le plus gros solde aujourd'hui
+		    if(soldeMaxJour<solde and annee==todayAnnee and mois==todayMois and jour==todayJour):
+			soldeMaxJour=solde
+			jourMaxJour=jour
+			moisMaxJour=mois
+			anneeMaxJour=annee
+			heureMaxJour=heure
+
+		    #permet de trouver le solde de 6 heures auparavant
+		    if(todayHeure<=6):
+			if ((todayJour-1==jour) and (todayMois==mois) and (todayAnnee==annee)) :
+			    if((24-(6-todayHeure)==heure)):
+				solde6heures=solde
+			elif (todayJour==1 and ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1) and (todayAnnee-1==annee) and (jour==31))) :
+			    if((24-(6-todayHeure)==heure)):
+				solde6heures=solde
+		    elif ( (todayHeure-6==heure) and (todayJour==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
+			solde6heures=solde
+
+		    #permet de trouver le solde de 12 heures auparavant
+		    if(todayHeure<=12):
+			if ((todayJour-1==jour) and (todayMois==mois) and (todayAnnee==annee)) :
+			    if((24-(12-todayHeure)==heure)):
+				solde12heures=solde
+			elif (todayJour==1 and ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1) and (todayAnnee-1==annee) and (jour==31))) :
+			    if((24-(12-todayHeure)==heure)):
+				solde12heures=solde
+		    elif ( (todayHeure-12==heure) and (todayJour==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
+			solde12heures=solde
+		    #permet de trouver le solde de 1 jours auparavant
+		    if(todayJour<=1):
+			if ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1 and mois==12) and (todayAnnee-1==annee)) :
+			    if (mois==1 or mois==3 or mois==5 or mois==7 or mois==8 or mois==10 or mois==12) :
+				if((31-todayJour+1==jour)):
+				    solde1jours=solde
+			    else :
+				if((30-todayJour+1==jour)):
+				    solde1jours=solde
+		    elif ( (todayJour-1==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
+			solde1jours=solde
+		    #permet de trouver le solde de 3 jours auparavant
+		    if(todayJour<=3):
+			if ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1 and mois==12) and (todayAnnee-1==annee)) :
+			    if (mois==1 or mois==3 or mois==5 or mois==7 or mois==8 or mois==10 or mois==12) :
+				if((31-todayJour+3==jour)):
+				    solde3jours=solde
+			    else :
+				if((30-todayJour+3==jour)):
+				    solde3jours=solde
+		    elif ( (todayJour-3==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
+			solde3jours=solde
+
+		    #permet de trouver le solde de 7 jours auparavant
+		    if(todayJour<=7):
+			if ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1 and mois==12) and (todayAnnee-1==annee)) :
+			    if (mois==1 or mois==3 or mois==5 or mois==7 or mois==8 or mois==10 or mois==12) :
+				if((31-todayJour+7==jour)):
+				    solde7jours=solde
+			    else :
+				if((30--todayJour+7==jour)):
+				    solde7jours=solde
+		    elif ( (todayJour-7==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
+			solde7jours=solde
+
+		    #permet de trouver le solde de 14 jours auparavant
+		    if(todayJour<=14):
+			if ((todayMois-1==mois) and (todayAnnee==annee)) or ((todayMois==1 and mois==12) and (todayAnnee-1==annee)) :
+			    if (mois==1 or mois==3 or mois==5 or mois==14 or mois==8 or mois==10 or mois==12) :
+				if((31-todayJour+14==jour)):
+				    solde14jours=solde
+			    else :
+				if((30-todayJour+14==jour)):
+				    solde14jours=solde
+		    elif ( (todayJour-14==jour) and (todayMois==mois) and (todayAnnee==annee) ) :
+			solde14jours=solde
+
+		    #permet de trouver le solde de 1 mois auparavant
+		    if(todayMois==1 and mois==12 and annee==todayAnnee-1 and todayJour==jour) :
+			solde1mois=solde
+		    elif(todayMois-1==mois and annee==todayAnnee and todayJour==jour) :
+			solde1mois=solde
+
+		    #permet de trouver le solde de 2 mois auparavant
+		    if(todayMois==1 and mois==11 and annee==todayAnnee-1 and todayJour==jour) :
+			solde2mois=solde
+		    if(todayMois==2 and mois==12 and annee==todayAnnee-1 and todayJour==jour) :
+			solde2mois=solde
+		    elif(todayMois-2==mois and annee==todayAnnee and todayJour==jour) :
+			solde2mois=solde
+		if 'solde' in locals():
+		    soldeLastExec=solde
+		else:
+		    soldeLastExec=usdAmount
+	    except :
+		pass
 except :
     print(f"WARNING : Le fichier {str(config['FICHIER.HISTORIQUE']['soldeFile'])} est introuvable, il va être créé.")
 
